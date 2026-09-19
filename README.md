@@ -65,7 +65,7 @@ Then in NekoBox: **Settings → Routes → select "RU-bypass + Games"** → reco
 
 ## Requirements
 
-- NekoRay / NekoBox **4.x** with sing-box core (tested on 4.0.1 / sing-box 1.9.7-neko-1).
+- NekoRay / NekoBox **4.x** with sing-box core (tested on 4.0.1-happ.2 / sing-box 1.13.21-neko.1).
 - TUN/VPN mode recommended — process-based rules only make sense there
   (in SOCKS mode the game-process rules do nothing).
 - geosite/geoip databases that ship with NekoBox (already included).
@@ -77,10 +77,13 @@ Then in NekoBox: **Settings → Routes → select "RU-bypass + Games"** → reco
   **first** (highest priority). This is verified against
   `ConfigBuilder.cpp` (lines 646/647/703-706 of nekoray's source).
 - `google.ru` and other `.ru` Google hosts go through **proxy** on purpose.
-- This profile does **not** fix Vanguard VAN 68 — if you hit that, see your
-  VPN's docs; this profile keeps game traffic on `bypass` (out of the
-  proxy chain) but on Windows the TUN adapter still sits in the path.
-- Tested by the author on Windows 11 x64, RU region.
+- **VAN 68 (Vanguard): no longer occurs.** An earlier sing-box core had a
+  conflict with Riot Vanguard's connection check — the client logged
+  `VGC connect+login OK` and ~10 s later `Disconnecting from Vanguard client: '68'`.
+  Updating the NekoBox core (now sing-box **1.13.21-neko.1**) resolved it:
+  LoL launches and plays fine with this profile + VPN enabled. If you see
+  VAN 68 with this profile, update your NekoBox/core first.
+- Tested by the author on Windows 11 x64, RU region — playing with VPN on.
 
 ## Uninstall
 
