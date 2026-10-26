@@ -9,8 +9,14 @@ that finds your NekoBox installation automatically and installs the profile.
 | Traffic | Path |
 |---|---|
 | Russian sites (`.ru`, `.su`, `.рф`, gov, category-ru) | **direct** |
-| Riot / Steam / Photon domains (game backends) | **direct** |
-| Games by process: LoL (full stack incl. Vanguard), Icarus, PEAK, Phasmophobia | **direct** |
+| Riot core domains (`riotgames.com`, `riotcdn.net`, `rgpub.io`, `leagueoflegends.com`) | **proxy** (pinned above `geosite:riot`) |
+| Steam / Photon domains + rest of `geosite:riot` (game backends) | **direct** |
+| `platipomiru.com` (RU payments) | **direct** |
+| Games by process: LoL (full stack incl. Vanguard `vgc/vgm/vgtray`), Icarus, PEAK, Phasmophobia | **direct** (bypass) |
+
+> Note: custom rules are applied first (highest priority), so the four Riot
+> domain suffixes above go through the proxy even though `geosite:riot` is in
+> the direct list — this is intentional.
 | Google / Gemini / Antigravity, OpenAI, Claude, Grok, Perplexity, Cursor, Windsurf, Kimi, etc. | **proxy** |
 | Game launchers' CDN + crash handlers | **direct** |
 | Everything else | **proxy** |
